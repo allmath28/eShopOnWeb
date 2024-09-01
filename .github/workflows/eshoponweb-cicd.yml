@@ -43,13 +43,13 @@ jobs:
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
-        name: .net-app
+        name: .net-app-${{ matrix.config.location }}
         path: ${{env.DOTNET_ROOT}}/app.zip
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
-        name: bicep-template
+        name: bicep-template-${{ matrix.config.location }}
         path: ${{ env.TEMPLATE-FILE }}
 
   deploy:
@@ -70,13 +70,13 @@ jobs:
     - name: Download artifact from build job
       uses: actions/download-artifact@v4
       with:
-        name: .net-app
+        name: .net-app-${{ matrix.config.location }}
         path: .net-app
 
     - name: Download artifact from build job
       uses: actions/download-artifact@v4
       with:
-        name: bicep-template
+        name: bicep-template-${{ matrix.config.location }}
         path: bicep-template
 
     - name: Azure Login
