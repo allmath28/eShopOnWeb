@@ -91,6 +91,7 @@ jobs:
         resourceGroupName: ${{ matrix.config.resource-group }}
         template: bicep-template/webapp.bicep
         parameters: 'webAppName=${{ matrix.config.webapp-name }} location=${{ matrix.config.location }}'
+        deploymentMode: Incremental # Modo incremental para evitar recriações
         failOnStdErr: false
 
     - name: Publish Website to WebApp
